@@ -15,7 +15,7 @@ const mcpUrl = new URL('/mcp', config.publicBaseUrl);
 const client = new FreshsalesClient(config.freshsalesBaseUrl, config.freshsalesApiKey);
 const app = createMcpExpressApp({
   host: '0.0.0.0',
-  allowedHosts: [new URL(config.publicBaseUrl).hostname]
+  allowedHosts: [new URL(config.publicBaseUrl).hostname, 'healthcheck.railway.app']
 });
 app.set('trust proxy', 1);
 app.use(express.json({ limit: '1mb' }));
