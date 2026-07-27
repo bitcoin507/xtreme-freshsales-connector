@@ -148,12 +148,57 @@ export function createActionsRouter(client: FreshsalesClient) {
 export function createOpenApiDocument(publicBaseUrl: string) {
   const entity = { type: 'string', enum: ['contacts', 'sales_accounts', 'deals'] };
   const id = { type: 'integer', minimum: 1 };
-  const fields = { type: 'object', properties: {}, additionalProperties: true };
+  const fields = {
+    type: 'object',
+    description: 'Freshsales fields to create or update. Extra standard or custom fields are allowed.',
+    properties: {
+      id,
+      first_name: { type: 'string' },
+      last_name: { type: 'string' },
+      name: { type: 'string' },
+      email: { type: 'string' },
+      mobile_number: { type: 'string' },
+      work_number: { type: 'string' },
+      job_title: { type: 'string' },
+      website: { type: 'string' },
+      address: { type: 'string' },
+      city: { type: 'string' },
+      state: { type: 'string' },
+      zipcode: { type: 'string' },
+      country: { type: 'string' },
+      owner_id: id,
+      sales_account_id: id,
+      territory_id: id,
+      deal_stage_id: id,
+      amount: { type: 'number' },
+      expected_close: { type: 'string' },
+      title: { type: 'string' },
+      description: { type: 'string' },
+      due_date: { type: 'string' },
+      status: { type: 'integer' }
+    },
+    additionalProperties: true
+  };
+  const responseProperties = {
+    connected: { type: 'boolean' },
+    success: { type: 'boolean' },
+    id,
+    name: { type: 'string' },
+    message: { type: 'string' },
+    status: { type: 'string' },
+    total: { type: 'integer' },
+    next_page: { type: 'integer' }
+  };
   const jsonResponse = {
     description: 'Successful Freshsales response',
     content: {
       'application/json': {
-        schema: { type: 'object', properties: {}, additionalProperties: true }
+        schema: {
+          type: 'object',
+          description: 'Freshsales response. The exact record collection depends on the endpoint.',
+          properties: responseProperties,
+          additionalProperties: true
+        }
       }
     }
   };
@@ -164,7 +209,7 @@ export function createOpenApiDocument(publicBaseUrl: string) {
     info: {
       title: 'Xtreme Freshsales Actions',
       description: 'Private CRM actions for Xtreme Disaster Restoration Group.',
-      version: '0.3.1'
+      version: '0.3.2'
     },
     servers: [{ url: publicBaseUrl }],
     components: {
