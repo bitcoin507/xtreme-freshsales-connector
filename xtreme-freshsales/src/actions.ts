@@ -148,10 +148,14 @@ export function createActionsRouter(client: FreshsalesClient) {
 export function createOpenApiDocument(publicBaseUrl: string) {
   const entity = { type: 'string', enum: ['contacts', 'sales_accounts', 'deals'] };
   const id = { type: 'integer', minimum: 1 };
-  const fields = { type: 'object', additionalProperties: true };
+  const fields = { type: 'object', properties: {}, additionalProperties: true };
   const jsonResponse = {
     description: 'Successful Freshsales response',
-    content: { 'application/json': { schema: { type: 'object', additionalProperties: true } } }
+    content: {
+      'application/json': {
+        schema: { type: 'object', properties: {}, additionalProperties: true }
+      }
+    }
   };
   const security = [{ bearerAuth: [] }];
 
@@ -160,7 +164,7 @@ export function createOpenApiDocument(publicBaseUrl: string) {
     info: {
       title: 'Xtreme Freshsales Actions',
       description: 'Private CRM actions for Xtreme Disaster Restoration Group.',
-      version: '0.3.0'
+      version: '0.3.1'
     },
     servers: [{ url: publicBaseUrl }],
     components: {

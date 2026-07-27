@@ -1,6 +1,6 @@
 {
   "name": "xtreme-freshsales-connector",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "private": true,
   "type": "module",
   "description": "Private ChatGPT MCP and Custom GPT Actions connector for Xtreme Disaster's Freshsales CRM.",
