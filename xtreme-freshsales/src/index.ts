@@ -9,6 +9,7 @@ import { loadConfig } from './config.js';
 import { FreshsalesClient } from './freshsales.js';
 import { loginGate, SingleUserOAuthProvider } from './auth.js';
 import { createServer } from './tools.js';
+import { actionBearerAuth, createActionsRouter, createOpenApiDocument } from './actions.js';
 
 const config = loadConfig();
 const mcpUrl = new URL('/mcp', config.publicBaseUrl);
@@ -43,6 +44,8 @@ if (!config.allowInsecureNoauth) {
 
 app.get('/', (_req, res) => res.json({ name: 'Xtreme Freshsales Connector', status: 'ok', mcp: '/mcp' }));
 app.get('/health', (_req, res) => res.json({ status: 'ok' }));
+app.get('/openapi.json', (_req, res) => res.json(createOpenApiDocument(config.publicBaseUrl)));
+app.use('/api', actionBearerAuth(config.connectorLoginSecret), createActionsRouter(client));
 
 const transports = new Map<string, StreamableHTTPServerTransport>();
 

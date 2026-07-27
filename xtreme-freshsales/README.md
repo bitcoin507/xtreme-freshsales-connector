@@ -92,6 +92,19 @@ an internet-accessible URL.
 2. Open **Settings → Plugins** and select the plus button.
 3. Name the app **Xtreme Freshsales**.
 4. Use `https://YOUR-HOST/mcp` as the MCP server URL.
+
+## ChatGPT Plus: Custom GPT Action
+
+The connector also exposes an authenticated REST API for a private Custom GPT.
+
+1. Confirm that `https://YOUR-HOST/openapi.json` returns the OpenAPI document.
+2. In the GPT Builder, create an Action and import:
+   `https://YOUR-HOST/openapi.json`
+3. Set authentication to API Key using Bearer authentication.
+4. Use the exact `CONNECTOR_LOGIN_SECRET` value as the API key.
+
+Read operations are marked non-consequential. Create and update operations are
+marked consequential so ChatGPT requests confirmation before changing CRM data.
 5. Choose OAuth/DCR if ChatGPT asks for the registration method.
 6. Enter `CONNECTOR_LOGIN_SECRET` on the authorization page.
 7. Set the app permission to **Ask before making changes**.

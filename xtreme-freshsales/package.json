@@ -1,9 +1,9 @@
 {
   "name": "xtreme-freshsales-connector",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
-  "description": "Private full-capability ChatGPT MCP connector for Xtreme Disaster's Freshsales CRM.",
+  "description": "Private ChatGPT MCP and Custom GPT Actions connector for Xtreme Disaster's Freshsales CRM.",
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "dev": "tsx watch src/index.ts",
